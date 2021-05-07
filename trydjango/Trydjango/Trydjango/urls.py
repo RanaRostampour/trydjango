@@ -18,11 +18,12 @@ from django.contrib import admin
 from django.urls import path , include
 #own
 from pages.views import home_view, contact_view ,about_view
-from products.views import Product_detail_view
+from products.views import Product_detail_view , Product_create_view
 urlpatterns = [
     path('',home_view, name='home'),
     path('contact/',contact_view, name='contacts'),
     path('product',Product_detail_view, name='Product_detail_view'),
     path('admin/', admin.site.urls),
-    path('about/',about_view,name='about')
+    path('about/',about_view,name='about'),
+    path('create/',Product_create_view,name='Product_create')
 ]
