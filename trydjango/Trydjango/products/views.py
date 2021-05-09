@@ -1,9 +1,11 @@
 
 from django.shortcuts import render
-#21
 
+#21
 from .forms import ProductForm,RawProductForm
 from .models import Product
+#30
+from django.shortcuts import get_object_or_404,redirect
 
 #def Product_create_view(request):
 #    my_form = RawProductForm()
@@ -43,3 +45,45 @@ def Product_detail_view(requests):
         'object':obj
     }
     return render(requests,"product/detail.html",context)
+
+
+#28
+#def render_initial_data(request):
+#    initial_data = {
+#        'title': "My awsome title"
+#    }
+#    form = ProductForm(request.POST or None, initial=initial_data)
+#    context = {
+#        'form':form
+#    }
+#    return render(request, "product/Product_create.html",context)
+
+#29,30
+def dynamic_lookup_view(request,id):
+    #obj = Product.objects.get(id=id)
+    obj = get_object_or_404(Product, id=id)
+    
+    context = {
+        "object":obj
+    }
+    return render(request,"product/detail.html",context)
+
+#31
+def product_delete_view(request,id):
+    obj = get_object_or_404(Product,id=id)
+    if request.method =='POST':
+        #confirming delete
+        obj.delete()
+        return redirect('../..')
+    context ={
+        "object":obj
+    }
+    return render (request,"product/product_delete.html")
+
+#32
+def product_list_view(request):
+    queryset = Product.objects.all() #list of objects
+    context={
+        "object_list":queryset
+    }
+    return render (request,"product/product_list.html",context)

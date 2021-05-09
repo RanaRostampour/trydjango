@@ -22,6 +22,7 @@ class ProductForm(forms.ModelForm):
         if not "CFE" in title:
             raise forms.ValidationError("this is not a valid title")
         return title
+    
     def clean_email(self,*args,**kwargs):   #this won't save in DB
         email =self.cleaned_data.get("email")
         if not email.endswith(".com"):

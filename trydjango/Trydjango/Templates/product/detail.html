@@ -5,8 +5,10 @@
 </h1>
 {%if object.title == 'harchi' %}
     {{'this is obj 1'}}
-{%else%}   
-    {{'other obj'}}
+{%else%}
+
+    {{ object.title }}'s value is   {{object.price}}$
+
 {%endif%}
 
 {%endblock%}
