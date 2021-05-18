@@ -1,0 +1,14 @@
+{%extends 'base.html'%}
+{%block content%}
+<h1>
+    item
+</h1>
+{%if object.title == 'harchi' %}
+    {{'this is obj 1'}}
+{%else%}
+
+    {{ object.title }}'s value is   {{object.price}}$
+
+{%endif%}
+
+{%endblock%}
